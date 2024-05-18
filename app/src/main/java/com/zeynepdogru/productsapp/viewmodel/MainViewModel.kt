@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.zeynepdogru.productsapp.model.Product
 import com.zeynepdogru.productsapp.service.ProductAPIService
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 
@@ -18,7 +19,7 @@ class MainViewModel: ViewModel() {
 
 
     fun getDataFromAPI() {
-        productAPI.getData().enqueue(object : retrofit2.Callback<List<Product>> {
+        productAPI.getData().enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 productData.value=response.body()
                 productError.value=false

@@ -17,6 +17,7 @@ class ProductAdapter(var productList: ArrayList<Product>) :RecyclerView.Adapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+
        val inflater=LayoutInflater.from(parent.context)
         val view=DataBindingUtil.inflate<ItemProductBinding>(inflater, R.layout.item_product,parent,false)
 
