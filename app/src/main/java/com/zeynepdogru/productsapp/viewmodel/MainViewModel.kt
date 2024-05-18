@@ -7,25 +7,31 @@ import com.zeynepdogru.productsapp.model.Product
 import com.zeynepdogru.productsapp.service.ProductAPIService
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
+
 
 class MainViewModel: ViewModel() {
 
-    private val productAPI=ProductAPIService()
+    private val productAPI = ProductAPIService()
 
-    val productData= MutableLiveData<List<Product>>()
+    val productData = MutableLiveData<List<Product>>()
+    val productError = MutableLiveData<Boolean>()
 
-    fun getDataFromAPI(){
-        productAPI.getData().enqueue(object :retrofit2.Callback<List<Product>>{
+
+    fun getDataFromAPI() {
+        productAPI.getData().enqueue(object : retrofit2.Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
-                productData.value= response.body()
+                productData.value=response.body()
+                productError.value=false
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-               Log.e("RetrofitError",t.message.toString())
+               productError.value=true
+                Log.e("RetrofitError", t.message.toString())
             }
 
-        })
-    }
 
+        })
+
+
+    }
 }

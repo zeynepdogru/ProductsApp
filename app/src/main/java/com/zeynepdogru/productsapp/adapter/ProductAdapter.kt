@@ -17,8 +17,8 @@ class ProductAdapter(var productList: ArrayList<Product>) :RecyclerView.Adapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-       var inflater=LayoutInflater.from(parent.context)
-        var view=DataBindingUtil.inflate<ItemProductBinding>(inflater, R.layout.item_product,parent,false)
+       val inflater=LayoutInflater.from(parent.context)
+        val view=DataBindingUtil.inflate<ItemProductBinding>(inflater, R.layout.item_product,parent,false)
 
         return ProductViewHolder(view)
     }
@@ -31,7 +31,9 @@ class ProductAdapter(var productList: ArrayList<Product>) :RecyclerView.Adapter<
         holder.view.titleTV.text= productList[position].title
         holder.view.priceTV.text= productList[position].price.toString()
 
-        Glide.with(holder.view.root).load(productList[position].productImage).into(holder.view.productIV)
+        Glide.with(holder.view.root)
+            .load(productList[position].productImage)
+            .into(holder.view.productIV)
     }
 
     @SuppressLint("NotifyDataSetChanged")

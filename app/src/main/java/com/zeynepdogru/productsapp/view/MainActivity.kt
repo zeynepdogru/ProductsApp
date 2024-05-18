@@ -1,6 +1,7 @@
 package com.zeynepdogru.productsapp.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -38,15 +39,24 @@ class MainActivity : AppCompatActivity() {
         viewModel.getDataFromAPI()
         setObserves()
 
+
+
     }
 
 
     private fun setObserves(){
-        viewModel.productData.observe(this, Observer{list->
-            productAdapter.updateList(list)
+        viewModel.productData.observe(this, Observer {
+            productAdapter.updateList(it)
+
         })
+        viewModel.productError.observe(this, Observer {
+            if(it){
+                binding.errorTV.visibility= View.VISIBLE
 
+            }else
+                binding.errorTV.visibility=View.GONE
 
+        })
 
     }
 }

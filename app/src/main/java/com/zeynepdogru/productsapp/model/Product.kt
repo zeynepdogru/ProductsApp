@@ -1,6 +1,6 @@
 package com.zeynepdogru.productsapp.model
 
-import android.graphics.drawable.Drawable
+
 import com.google.gson.annotations.SerializedName
 
 data class Product(
